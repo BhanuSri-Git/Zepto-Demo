@@ -1,70 +1,168 @@
-# Getting Started with Create React App
+# 🎨 Zepto Demo — Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The React-based single-page application for the Zepto Demo grocery app.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 📁 Folder Structure
 
-### `npm start`
+```
+frontend/
+├── public/
+│   └── index.html                    # HTML entry point
+├── src/
+│   ├── context/
+│   │   └── CartContext.jsx           # Global cart state (React Context)
+│   ├── App.js                        # Route definitions
+│   ├── index.js                      # React DOM entry point
+│   │
+│   ├── zeptoHeader.jsx               # Top navigation header
+│   ├── zeptoHomeHeader.jsx           # Home page with category tabs
+│   ├── zeptoSearchBar.jsx            # Search bar component
+│   ├── zeptoLogo.jsx                 # Logo component
+│   ├── zeptoLoginCart.jsx            # Login + cart icon in header
+│   │
+│   ├── zeptoHomeCoffeePage.jsx       # Coffee section on home page
+│   ├── zeptoExploreMore.jsx          # Explore more section
+│   ├── HomeGrocery&Kitchen.jsx       # Grocery & Kitchen section
+│   ├── SnacksDrinks.jsx              # Snacks & Drinks section
+│   ├── zeptoFooter1.jsx              # Footer with popular searches
+│   │
+│   ├── productsByCategory.jsx        # Category/subcategory product listing
+│   ├── zeptoSearchBySubcategory.jsx  # Products filtered by subcategory
+│   ├── zeptoOnion.jsx                # Product detail page
+│   ├── zeptoProductImagePage.jsx     # Product image display
+│   ├── zeptoProductInfo.jsx          # Product info section
+│   ├── zeptoProductHighlights.jsx    # Product highlights section
+│   ├── zeptoAddToCart.jsx            # Add to cart button component
+│   ├── cartPage.jsx                  # Shopping cart page
+│   │
+│   ├── categoryBased.jsx             # Category-based layout helper
+│   ├── categoryPageSubcategoryPage.jsx  # Subcategory page layout
+│   ├── product.jsx                   # Product card component
+│   ├── productPrice.jsx              # Price display component
+│   │
+│   └── *.css                         # Component-level stylesheets
+├── package.json
+└── README.md
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🚀 Getting Started
 
-### `npm test`
+### 1. Install dependencies
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+npm install
+```
 
-### `npm run build`
+### 2. Start the development server
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+App runs at: `http://localhost:3000`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+> Make sure the backend server is running at `http://localhost:5000` before starting the frontend.
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🗺️ Routes
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+| Path | Component | Description |
+|------|-----------|-------------|
+| `/` | `HomeHeader` | Home page with category tabs and featured sections |
+| `/product/:id` | `ProductDetails` | Full product detail page |
+| `/Home/:category` | `ProductCategory` | All products in a category |
+| `/Home/:category/:subcategory` | `ProductCategory` | Products filtered by subcategory |
+| `/Home/subs/:subcategory` | `SearchBySubCategory` | Products by subcategory (cross-category) |
+| `/cart` | `CartPage` | Shopping cart |
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 🛒 Cart — How It Works
 
-## Learn More
+Cart state is managed globally using **React Context** (`CartContext.jsx`).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Available cart actions
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+| Action | Description |
+|--------|-------------|
+| `addToCart(product)` | Adds product or increments quantity if already in cart |
+| `decreaseFromCart(productId)` | Decrements quantity, removes item if quantity reaches 0 |
+| `removeFromCart(productId)` | Removes product completely from cart |
+| `updateQuantity(productId, qty)` | Sets quantity to a specific value |
 
-### Code Splitting
+### Usage in any component
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```jsx
+import { useCart } from "./context/CartContext";
 
-### Analyzing the Bundle Size
+const { cartItems, addToCart, removeFromCart } = useCart();
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+> ⚠️ Cart state is in-memory only — it resets on page refresh (no localStorage persistence yet).
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 📦 Key Dependencies
 
-### Advanced Configuration
+| Package | Version | Purpose |
+|---------|---------|---------|
+| `react` | v19 | UI library |
+| `react-router-dom` | v7 | Client-side routing |
+| `axios` | v1 | HTTP requests to backend API |
+| `@fortawesome/fontawesome-free` | v7 | Icons for category buttons and UI |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+## 🎨 Styling
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- Each component has its own `.css` file for scoped styles
+- Global styles are in `index.css` and `App.css`
+- Font Awesome icons used throughout the UI for category tabs and buttons
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 🔌 Backend API Base URL
+
+The frontend communicates with the backend at:
+
+```
+http://localhost:5000
+```
+
+If you deploy the backend, update the API base URL in the relevant component files (`zeptoOnion.jsx`, `productsByCategory.jsx`, `cartPage.jsx`, etc.).
+
+---
+
+## 🧪 Testing
+
+```bash
+npm test
+```
+
+Uses React Testing Library and Jest (via Create React App defaults).
+
+---
+
+## 🏗️ Build for Production
+
+```bash
+npm run build
+```
+
+Outputs optimized static files to the `build/` folder, ready for deployment.
+
+---
+
+## 🔧 Scripts
+
+```bash
+npm start        # Start development server (port 3000)
+npm run build    # Build for production
+npm test         # Run tests
+npm run eject    # Eject CRA config (irreversible)
+```
