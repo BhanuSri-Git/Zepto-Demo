@@ -19,3 +19,19 @@
   color: #333;
   background: white;
 }
+.LoginCart {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.LoginCart button {
+  all: unset;
+  cursor: pointer;
+}
+
+.LoginCart i {
+  font-size: 22px;
+  color: #333;
+}
+

@@ -5,6 +5,7 @@ import CoffeeHome from "./zeptoHomeCoffeePage";
 import { useNavigate } from "react-router-dom";
 import GroceryPage from "./HomeGrocery&Kitchen";
 import SnacksPage from "./SnacksDrinks";
+import PopularSearches from "./zeptoFooter1";
 
 function HomeHeader() {
   const categories = [
@@ -77,6 +78,7 @@ function HomeHeader() {
     <ExploreItems/>
     <GroceryPage/>
     <SnacksPage/>
+    <PopularSearches/>
     </>
   );
 }

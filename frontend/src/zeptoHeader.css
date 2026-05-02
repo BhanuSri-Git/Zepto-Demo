@@ -34,3 +34,56 @@
   margin: 20px;
   margin-right: 0px;
 }
+
+.Header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 40px;
+  height: 120px;
+  width: 100%;
+}
+
+.HeaderRight {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.Header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 12px 32px;
+  height: 110px;
+  width: 100%;
+  box-sizing: border-box;
+  background: linear-gradient(90deg, #f8f0ff, #ffffff);
+}
+
+.Logo {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.SearchBar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.HeaderRight {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 18px;
+}
+.SearchBar input {
+  width: 100%;
+  max-width: 720px;
+}
+
+
+
